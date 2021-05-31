@@ -1,0 +1,19 @@
+{
+  "allowedLicenses": [
+    {
+      "moduleLicense": "Apache License, Version 2.0",
+      "moduleName": ".*"
+    },
+    {
+      "moduleLicense": "BSD Zero Clause License",
+      "moduleName": ".*"
+    }
+  ],
+  "overrideLicenses" : [
+    {
+      "moduleLicense": "Test License",
+      "moduleVersion": "1.0.0",
+      "moduleName": "tech.pegasys.internal:Test"
+    }
+  ]
+}

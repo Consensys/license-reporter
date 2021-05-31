@@ -10,22 +10,13 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package tech.pegasys.internal.license.reporter;
+package tech.pegasys.internal.license.reporter.converters
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.github.jk1.license.License
+import com.github.jk1.license.ModuleData
 
-import java.net.URL;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
-class GroupedLicenseHtmlRendererTest {
-  @Test
-  void testOverriddenFileReader() {
-    final URL resource = getClass().getClassLoader().getResource("allowed-licenses.json");
-    assertThat(resource).isNotNull();
-    final List<OverriddenLicense> overriddenLicenses =
-        OverrideLicenseFileReader.importOverriddenLicenses(resource);
-    assertThat(overriddenLicenses).hasSize(1);
-  }
+class PomLicenseConverter {
+    static Set<License> getPomLicenses(final ModuleData module) {
+        return module.poms*.licenses.flatten().toSet() as Set<License>
+    }
 }
