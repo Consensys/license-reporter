@@ -15,6 +15,7 @@ package tech.pegasys.internal.license.reporter
 import tech.pegasys.internal.license.reporter.converters.BundledLicenseConverter
 import tech.pegasys.internal.license.reporter.converters.ManifestLicenseConverter
 import tech.pegasys.internal.license.reporter.converters.OverriddenLicenseConverter
+import tech.pegasys.internal.license.reporter.converters.PomLicenseConverter
 
 import com.github.jk1.license.License
 import com.github.jk1.license.ModuleData
@@ -47,7 +48,7 @@ class LicenseConverter {
 
         moduleLicenses.each {
             String projectUrl = projectUrl(it.key)
-            Set<License> licenses = (ManifestLicenseConverter.getManifestLicenses(it.key) + tech.pegasys.internal.license.reporter.converters.PomLicenseConverter.getPomLicenses(it.key)) ?: tech.pegasys.internal.license.reporter.converters.BundledLicenseConverter.getBundledLicenses(it.key)
+            Set<License> licenses = (ManifestLicenseConverter.getManifestLicenses(it.key) + PomLicenseConverter.getPomLicenses(it.key)) ?: BundledLicenseConverter.getBundledLicenses(it.key)
 
             // if licenses are empty, try to fetch it from overriddenLicense section for this module - if any
             if (!licenses) {
@@ -73,8 +74,8 @@ class LicenseConverter {
     }
 
     static String projectUrl(ModuleData it) {
-        String manifestProjectUrl = it.manifests.find().url
-        String pomProjectUrl = it.poms.find().projectUrl
+        String manifestProjectUrl = it.manifests?.find()?.url
+        String pomProjectUrl = it.poms?.find()?.projectUrl
         if (manifestProjectUrl) {
             return manifestProjectUrl
         } else if(pomProjectUrl) {
