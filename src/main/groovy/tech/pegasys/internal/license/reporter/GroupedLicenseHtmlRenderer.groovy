@@ -29,9 +29,11 @@ import org.gradle.api.tasks.Input
 class GroupedLicenseHtmlRenderer implements ReportRenderer {
   private String fileName
   private File outputFile
+  private boolean includeTimestamp
 
-  GroupedLicenseHtmlRenderer(String fileName = 'index.html') {
+  GroupedLicenseHtmlRenderer(String fileName = 'index.html', boolean includeTimestamp = true) {
     this.fileName = fileName
+    this.includeTimestamp = includeTimestamp
   }
 
   @Input
@@ -126,8 +128,10 @@ class GroupedLicenseHtmlRenderer implements ReportRenderer {
             }
           }
         }
-        br()
-        p "Report Generated at: ${LocalDateTime.now()}"
+        if (includeTimestamp) {
+          br()
+          p "Report Generated at: ${LocalDateTime.now()}"
+        }
       }
     }
 
