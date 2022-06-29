@@ -58,10 +58,10 @@ class GroupedLicenseHtmlRenderer implements ReportRenderer {
     // group them based on license string
     Map<String, Set<ModuleLicenseInformation>> licenseGroup = groupByLicense(moduleLicenses, overriddenLicenses)
 
-    writeHtmlFile(project, licenseGroup, outputFile)
+    writeHtmlFile(project, licenseGroup, outputFile, includeTimestamp)
   }
 
-  private static void writeHtmlFile(project, licenseGroup, File outputFile) {
+  private static void writeHtmlFile(project, licenseGroup, File outputFile, boolean includeTimestamp) {
     def version = project.version != "unspecified" ? "(${project.version})" : ""
     def writer = new StringWriter()
     def builder = new MarkupBuilder(writer)
