@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 ConsenSys AG.
+ * Copyright Consensys Software Inc., 2021
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,12 +10,12 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package tech.pegasys.internal.license.reporter
+package io.consensys.protocols.license.reporter
 
-import tech.pegasys.internal.license.reporter.converters.BundledLicenseConverter
-import tech.pegasys.internal.license.reporter.converters.ManifestLicenseConverter
-import tech.pegasys.internal.license.reporter.converters.OverriddenLicenseConverter
-import tech.pegasys.internal.license.reporter.converters.PomLicenseConverter
+import io.consensys.protocols.license.reporter.converters.BundledLicenseConverter
+import io.consensys.protocols.license.reporter.converters.ManifestLicenseConverter
+import io.consensys.protocols.license.reporter.converters.OverriddenLicenseConverter
+import io.consensys.protocols.license.reporter.converters.PomLicenseConverter
 
 import com.github.jk1.license.License
 import com.github.jk1.license.ModuleData
@@ -24,9 +24,9 @@ class LicenseConverter {
     static Map<ModuleData, Set<String>> convertToLicenseStrings(final Set<ModuleData> moduleData, List<OverriddenLicense> overriddenLicenses) {
         final Map<ModuleData, Set<String>> moduleLicenses = [:] as TreeMap
         moduleData.each {
-            Set<License> licenses = (tech.pegasys.internal.license.reporter.converters.ManifestLicenseConverter.getManifestLicenses(it) + tech.pegasys.internal.license.reporter.converters.PomLicenseConverter.getPomLicenses(it)) ?: tech.pegasys.internal.license.reporter.converters.BundledLicenseConverter.getBundledLicenses(it)
+            Set<License> licenses = (io.consensys.protocols.license.reporter.converters.ManifestLicenseConverter.getManifestLicenses(it) + io.consensys.protocols.license.reporter.converters.PomLicenseConverter.getPomLicenses(it)) ?: io.consensys.protocols.license.reporter.converters.BundledLicenseConverter.getBundledLicenses(it)
 
-            Set<String> licenseNames = tech.pegasys.internal.license.reporter.converters.OverriddenLicenseConverter.applyOverriddenLicense(licenses, it, overriddenLicenses)
+            Set<String> licenseNames = io.consensys.protocols.license.reporter.converters.OverriddenLicenseConverter.applyOverriddenLicense(licenses, it, overriddenLicenses)
 
             // report Unknown or multiple licenses
             if (!licenseNames) {
