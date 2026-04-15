@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 ConsenSys AG.
+ * Copyright Consensys Software Inc., 2021
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -10,10 +10,10 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package tech.pegasys.internal.license.reporter
+package io.consensys.protocols.license.reporter
 
-import static tech.pegasys.internal.license.reporter.LicenseConverter.convertToLicenseStrings
-import static tech.pegasys.internal.license.reporter.LicenseConverter.groupByLicense
+import static io.consensys.protocols.license.reporter.LicenseConverter.convertToLicenseStrings
+import static io.consensys.protocols.license.reporter.LicenseConverter.groupByLicense
 
 import java.time.LocalDateTime
 
